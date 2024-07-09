@@ -5,7 +5,7 @@
             <widgetFile path="MxRnNativePassword.xml"/>
         </widgetFiles>
         <files>
-            <file path="juego studios pvt ltd/mxrnnativepassword"/>
+            <file path="mendix/mxrnnativepassword"/>
         </files>
     </clientModule>
 </package>

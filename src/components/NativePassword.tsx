@@ -15,21 +15,21 @@ export interface NativePasswordProps {
 
 const defaultStyle: CustomStyle = {
     container: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: "#ccc",
         borderRadius: 8,
         paddingHorizontal: 8,
-        marginVertical: 10,
+        marginVertical: 10
     },
     input: {
         flex: 1,
         height: 40,
-        paddingHorizontal: 10,
+        paddingHorizontal: 10
     },
     iconContainer: {
-        padding: 4,
+        padding: 4
     },
     label: {
         color: "#F6BB42"
@@ -42,13 +42,12 @@ export function NativePassword({ password, style }: NativePasswordProps): ReactE
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     useEffect(() => {
-        if(password.value) {
-            setPasswordStateValue(password.value.toString())
+        if (password.value) {
+            setPasswordStateValue(password.value.toString());
         }
-    }, [password])
-    
+    }, [password]);
 
-    const togglePasswordVisibility = () => {
+    const togglePasswordVisibility = (): void => {
         setIsPasswordVisible(!isPasswordVisible);
     };
 
@@ -56,26 +55,16 @@ export function NativePassword({ password, style }: NativePasswordProps): ReactE
         <View style={styles.container}>
             secureTextEntry={!isPasswordVisible}
             <TextInput
-            style={styles.input}
-            placeholder={"Password"}
-            placeholderTextColor="#888" 
-            value={passwordStateValue}
-            onChangeText={text => {
-                password.setValue(text);
-                setPasswordStateValue(text);
-            }}
+                style={styles.input}
+                placeholderTextColor="#888"
+                value={passwordStateValue}
+                onChangeText={text => {
+                    password.setValue(text);
+                    setPasswordStateValue(text);
+                }}
             />
-            <TouchableOpacity
-            style={styles.iconContainer}
-            onPress={togglePasswordVisibility}
-            >
-                
-            <Icon
-                name={isPasswordVisible ? 'eye-off' : 'eye'}
-                type="material-community"
-                size={24}
-                color="gray"
-            />
+            <TouchableOpacity style={styles.iconContainer} onPress={togglePasswordVisibility}>
+                <Icon name={isPasswordVisible ? "eye-off" : "eye"} type="material-community" size={24} color="gray" />
             </TouchableOpacity>
         </View>
     );
