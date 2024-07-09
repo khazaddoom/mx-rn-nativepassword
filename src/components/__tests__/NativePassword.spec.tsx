@@ -12,7 +12,7 @@ describe.each(["ios", "android"])("HelloWorld for %s", (os: "ios" | "android") =
 
     it("renders the structure correctly", () => {
         const nativePasswordProps: NativePasswordProps = {
-            password: Option_2,
+            password: "password",
             style: []
         };
         const helloWorld = shallow(<NativePassword {...nativePasswordProps} />);
@@ -22,7 +22,7 @@ describe.each(["ios", "android"])("HelloWorld for %s", (os: "ios" | "android") =
 
     it("renders the structure correctly with custom style", () => {
         const nativePasswordProps: NativePasswordProps = {
-            name: "Mendix",
+            password: null,
             style: [{ container: { borderColor: "white" }, label: { color: "black" } }]
         };
         const helloWorld = shallow(<NativePassword {...nativePasswordProps} />);

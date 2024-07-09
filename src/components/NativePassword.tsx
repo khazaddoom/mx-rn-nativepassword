@@ -1,5 +1,5 @@
 import { ReactElement, createElement, useState, useEffect } from "react";
-import { TextInput, TouchableOpacity, View } from "react-native";
+import { TextInput, TouchableOpacity, View, Appearance } from "react-native";
 import { Icon } from "react-native-elements";
 
 import { mergeNativeStyles } from "@mendix/pluggable-widgets-tools";
@@ -7,6 +7,8 @@ import { mergeNativeStyles } from "@mendix/pluggable-widgets-tools";
 import { CustomStyle } from "../MxRnNativePassword";
 
 import { EditableValue } from "mendix";
+
+const mode = Appearance.getColorScheme();
 
 export interface NativePasswordProps {
     password: EditableValue<string>;
@@ -26,7 +28,9 @@ const defaultStyle: CustomStyle = {
     input: {
         flex: 1,
         height: 40,
-        paddingHorizontal: 10
+        paddingHorizontal: 2,
+        fontSize: 18,
+        color: mode === "dark" ? "#fff" : "#000"
     },
     iconContainer: {
         padding: 4
@@ -53,9 +57,10 @@ export function NativePassword({ password, style }: NativePasswordProps): ReactE
 
     return (
         <View style={styles.container}>
-            secureTextEntry={!isPasswordVisible}
             <TextInput
+                secureTextEntry={!isPasswordVisible}
                 style={styles.input}
+                placeholder={"Password"}
                 placeholderTextColor="#888"
                 value={passwordStateValue}
                 onChangeText={text => {
