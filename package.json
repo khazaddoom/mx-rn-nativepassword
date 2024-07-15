@@ -33,6 +33,7 @@
     "@types/jest": "^29.0.0"
   },
   "dependencies": {
+    "react-native-detect-press-outside": "^1.0.4",
     "react-native-elements": "^3.4.3"
   },
   "overrides": {

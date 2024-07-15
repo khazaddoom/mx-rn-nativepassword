@@ -1,4 +1,4 @@
-import { ReactElement, createElement, useState, useEffect } from "react";
+import { ReactElement, createElement, useState, useEffect, useRef, forwardRef } from "react";
 import { TextInput, TouchableOpacity, View, Appearance } from "react-native";
 import { Icon } from "react-native-elements";
 
@@ -40,7 +40,9 @@ const defaultStyle: CustomStyle = {
     }
 };
 
-export function NativePassword({ password, style }: NativePasswordProps): ReactElement {
+export type Ref = ReactElement;
+
+const NativePassword = forwardRef<Ref,NativePasswordProps> (function ({ password, style }: NativePasswordProps, ref): ReactElement {
     const styles = mergeNativeStyles(defaultStyle, style);
     const [passwordStateValue, setPasswordStateValue] = useState("");
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -55,8 +57,7 @@ export function NativePassword({ password, style }: NativePasswordProps): ReactE
         setIsPasswordVisible(!isPasswordVisible);
     };
 
-    return (
-        <View style={styles.container}>
+    return (<View style={styles.container} ref={ref}>
             <TextInput
                 secureTextEntry={!isPasswordVisible}
                 style={styles.input}
@@ -73,4 +74,7 @@ export function NativePassword({ password, style }: NativePasswordProps): ReactE
             </TouchableOpacity>
         </View>
     );
-}
+});
+
+
+export default NativePassword;
